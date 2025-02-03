@@ -9,4 +9,5 @@ Secrets needed on your local machine (at /run/secrets/):
 - cloudflare-api-token: used by the swag container to set the cloudflare api token for dns validation
 
 # Containers
-- lscr.io/linuxserver/swag
+- [SWAG](https://github.com/linuxserver/docker-swag) as reverse proxy
+  - Includes a startup script that pulls in a cloudflare api token as a secret
