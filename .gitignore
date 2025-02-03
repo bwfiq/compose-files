@@ -1,0 +1,20 @@
+# Only track my compose files
+!*.yml
+!*.env
+
+# Ignore the actual docker data volume
+data/**
+
+# Temporarily here while I migrate
+/aenyrathia-wiki/
+/character-builder/
+/code-server/
+/couchdb/
+/diun/
+/gitea/
+/gtnh-server/
+/librechat/
+/school-engage-sg/
+/uptime-kuma/
+/vaultwarden/
+/webtrees/
