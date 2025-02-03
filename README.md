@@ -7,3 +7,6 @@ Naming convention for containers are [private|public]-[image-name].
 
 Secrets needed on your local machine (at /run/secrets/):
 - cloudflare-api-token: used by the swag container to set the cloudflare api token for dns validation
+
+# Containers
+- lscr.io/linuxserver/swag
