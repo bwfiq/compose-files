@@ -1,9 +1,5 @@
-# Only track my compose files
-!*.yml
-!*.env
-
 # Ignore the actual docker data volume
-data/**
+**/data/**
 
 # Temporarily here while I migrate
 /aenyrathia-wiki/
