@@ -33,6 +33,8 @@ services:
       - apollo_bridge
     secrets:
       - cloudflare-api-token
+    labels:
+      - diun.enable=true
     restart: always
 networks:
   apollo_bridge:
