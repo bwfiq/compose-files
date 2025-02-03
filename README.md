@@ -11,3 +11,8 @@ Secrets needed on your local machine (at /run/secrets/):
 # Containers
 - [SWAG](https://github.com/linuxserver/docker-swag) as reverse proxy
   - Includes a startup script that pulls in a cloudflare api token as a secret
+
+# TODO
+- [ ] add a check for the network top level element in the compose files
+- [ ] add monitoring for container updates and swag proxy sample updates
+- [ ] add authelia for MFA
