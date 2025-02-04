@@ -1,6 +1,10 @@
 # Ignore the actual docker data volume
 **/data/**
 
+# Ignore temp files
+tmp/
+tmp/*
+
 # Temporarily here while I migrate
 /aenyrathia-wiki/
 /character-builder/

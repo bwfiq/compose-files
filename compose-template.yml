@@ -1,0 +1,31 @@
+---
+# THIS IS A TEMPLATE FILE
+services:
+  service_name:
+    container_name: container-name
+    image: image-link
+    # entrypoint:
+    # command: 
+    # cap_add:
+    #   - NET_ADMIN
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./data:/config
+    ports:
+      - 2309:2309
+    networks:
+      - apollo_bridge
+    secrets:
+      - example_secret
+    labels:
+      - diun.enable=true
+    restart: always
+networks:
+  apollo_bridge:
+    external: true
+secrets:
+  example_secret:
+    file: /run/secrets/example_secret
