@@ -6,16 +6,16 @@
 ---
 services:
   web:
-    container_name: hoarder-web
+    container_name: hoarder
     image: ghcr.io/hoarder-app/hoarder:release
     entrypoint: ["/load-hoarder-secrets.sh"]
     environment:
       - MEILI_ADDR=http://meilisearch:7700
       - BROWSER_WEB_URL=http://chrome:9222
-      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL=http://localhost:3000 # replace with URL
       - DATA_DIR=/data
     volumes:
-      - ./data:/data
+      - ./data/hoarder:/data
       - ./load-hoarder-secrets.sh:/load-hoarder-secrets.sh
     ports:
       - 3000:3000
@@ -47,7 +47,7 @@ services:
     environment:
       - MEILI_NO_ANALYTICS=true
     volumes:
-      - ./meili_data:/meili_data
+      - ./data/meilisearch:/meili_data
     networks:
       - apollo_bridge
     restart: unless-stopped
