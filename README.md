@@ -26,6 +26,7 @@ Secrets needed on your local machine (at `/run/secrets/`):
   - Monitors for updates and sends telegram message
 - [Hoarder](https://github.com/hoarder-app/hoarder) as bookmark manager
   - Collects and archives web pages
+  - Includes a startup script that sets the environment variables from secrets
 
 # TODO
 - [ ] add a check for the network top level element in the compose files
