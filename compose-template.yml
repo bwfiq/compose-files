@@ -12,6 +12,7 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
+      - FILE__EXAMPLE_SECRET=/run/secrets/example_secret
     volumes:
       - ./data:/config
     ports:
