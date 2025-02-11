@@ -2,26 +2,31 @@
 # THIS IS A TEMPLATE FILE
 services:
   service_name:
-    container_name: container-name
+    container_name: container-name  # just the name of the service
     image: image-link
-    # entrypoint:
-    # command: 
-    # cap_add:
-    #   - NET_ADMIN
+    # entrypoint: # only if needed
+    # command: # only if needed
+    # cap_add: # only if needed
+    #   - NET_ADMIN # only if needed
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
-      - FILE__EXAMPLE_SECRET=/run/secrets/example_secret
+      - PUID=${PUID} # always
+      - PGID=${PGID} # always
+      - TZ=${TZ} # always
+      - FILE__EXAMPLE_SECRET=/run/secrets/example_secret # only if needed
     volumes:
+    # We always want the mapped volunme to be called data on the local machine
       - ./data:/config
     ports:
+    # Change to app specific port (remove if only accessed through proxy)
       - 2309:2309
     networks:
+    # Must use the network you have created beforehand
       - apollo_bridge
     secrets:
+    # Change to app specific config (can be removed if no secrets)
       - example_secret
     labels:
+    # To allow DIUN to check your app for updates
       - diun.enable=true
     restart: always
 networks:
