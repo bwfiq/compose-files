@@ -1,5 +1,7 @@
 This repository is only for CONFIGURATION files. Do not use it to back up the actual volumes.
 
+Create a docker network named `apollo_bridge`.
+
 The gitignore ignores all files in any directory named data recursively.
 Map the docker compose volumes to a ./data subdirectory on the host to make use of this.
 Add the following to each compose file to monitor it for updates with diun:
@@ -27,6 +29,8 @@ Secrets needed on your local machine (at `/run/secrets/`):
   - Includes a startup script that pulls in a cloudflare api token as a secret
   - Internal ports: 443 (reverse proxy)
   - External ports: 443 (reverse proxy)
+  - Proxies configured:
+    - None so far :)
 - [DIUN](https://github.com/crazy-max/diun) as image update notifier
   - Monitors for updates and sends telegram message
 - [Hoarder](https://github.com/hoarder-app/hoarder) as bookmark manager
@@ -38,9 +42,12 @@ Secrets needed on your local machine (at `/run/secrets/`):
   - lightweight LDAP server
   - Internal ports: 3890 (LDAP), 17170 (web UI)
   - External ports: 17170 (web UI)
-
+- [Grocy](https://github.com/grocy/grocy) for household management
+  - Internal ports: 80 (HTTP)
+  - External ports: 9283 (HTTP)
 # TODO
-- [ ] add a check for the network top level element in the compose files
 - [x] add monitoring for container updates 
+- [ ] add a check for the network top level element in the compose files
 - [ ] add monitoring for swag proxy sample updates
 - [ ] add authelia for MFA
+- [ ] change network name
