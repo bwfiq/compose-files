@@ -1,5 +1,7 @@
 # Nginx Proxies to Services
 !private-swag/data/nginx/proxy-confs/*
+## to ignore the swag proxy samples
+*.sample
 
 # Working Files
 tmp/*
