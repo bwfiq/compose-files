@@ -40,7 +40,7 @@ Secrets needed on your local machine (at `/run/secrets/`):
   - Internal ports: 443 (reverse proxy)
   - External ports: 443 (reverse proxy)
   - Proxies configured:
-    - None so far :)
+    - aenyrathia.wiki (192.168.0.181:5896), chat.bwfiq.com (192.168.0.181:3080)
 - [Grocy](https://github.com/grocy/grocy) for household management
   - Internal ports: 80 (HTTP)
   - External ports: 9283 (HTTP)
