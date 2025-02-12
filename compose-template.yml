@@ -14,7 +14,7 @@ services:
       - TZ=${TZ} # always
       - FILE__EXAMPLE_SECRET=/run/secrets/example_secret # only if needed
     volumes:
-    # We always want the mapped volunme to be called data on the local machine
+    # We always want the mapped volume to be called data on the local machine
       - ./data:/config
     ports:
     # Change to app specific port (remove if only accessed through proxy)
@@ -28,6 +28,9 @@ services:
     labels:
     # To allow DIUN to check your app for updates
       - diun.enable=true
+    depends_on:
+    # To make containers start after another has started
+      - mongo
     restart: always
 networks:
   apollo_bridge:
