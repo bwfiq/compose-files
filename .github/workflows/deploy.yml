@@ -1,0 +1,33 @@
+name: Deploy # Name of the workflow
+
+on:
+  push: # Define when this workflow should be triggered
+    branches:
+      - main # Only trigger for pushes to the 'main' branch
+
+jobs:
+  deploy: # Begin definition of the job named 'deploy'
+    runs-on: ubuntu-latest # Specify the environment to run the job (using the latest Ubuntu)
+
+    steps:
+      - name: Checkout code # First step: checkout the code from the repository
+        uses: actions/checkout@v2 # Use the checkout action provided by GitHub to retrieve the code
+
+      - name: Connect to Tailscale # Second step: connect to the Tailscale network
+        uses: tailscale/github-action@v3 # Utilize the Tailscale GitHub Action to facilitate the connection
+        with: # Specify the parameters required for the Tailscale action
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }} # OAuth client ID stored securely in GitHub secrets
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }} # OAuth secret stored securely in GitHub secrets
+          tags: tag:ci # Assign a tag for identification within the Tailscale network
+
+      - name: Install sshpass # Step to install sshpass to facilitate password-based SSH connections
+        run: sudo apt-get install -y sshpass # Command to install sshpass using apt package manager
+
+      - name: SSH into server and deploy application # Final step: SSH into the target server and deploy the application
+        run: | # Begin an inline script to run multiple commands
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
+          cd ${{ secrets.SERVER_DIRECTORY }}  # Change directory to where the application is stored
+
+          # Pull the latest code from the repository
+          git pull origin main  # Execute git pull to fetch the latest changes from the main branch
+          EOF
