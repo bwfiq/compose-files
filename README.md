@@ -5,6 +5,7 @@ Create a docker network named `apollo_bridge`.
 The gitignore ignores all files in any directory named data recursively.
 Map the docker compose volumes to a ./data subdirectory on the host to make use of this.
 Add the following to each compose file to monitor it for updates with diun:
+
 ```yml
 services:
   [container name]:
@@ -15,6 +16,7 @@ services:
 Naming convention for containers are [private|public]-[image-name].
 
 Secrets needed on your local machine (at `/run/secrets/`):
+
 - DIUN
   - `diun-telegram-bot-token` and `diun-telegram-chat-ids`: used by diun to send notifications to telegram
 - LLDAP
@@ -29,6 +31,7 @@ Secrets needed on your local machine (at `/run/secrets/`):
   - `openai_api_key`: used by Hoarder. Get from [OpenAI's platform](https://platform.openai.com/settings/organization/api-keys)
 
 # Containers
+
 - [DIUN](https://github.com/crazy-max/diun) as image update notifier
   - Monitors for updates and sends telegram message
 - [LLDAP](https://github.com/lldap/lldap) as LDAP server
@@ -57,15 +60,17 @@ Secrets needed on your local machine (at `/run/secrets/`):
 This GitHub Actions workflow automates the deployment of your application to a server whenever changes are pushed to the `main` branch of your repository. It connects to the Tailscale network and pulls the latest code from the repository to the target server.
 
 Secrets Configuration:
-   You need to define several secret values in your GitHub repository settings. Go to your repository, click on "Settings" > "Secrets and variables" > "Actions", then add the following secrets:
-   - `TS_OAUTH_CLIENT_ID`: Your Tailscale OAuth client ID.
-   - `TS_OAUTH_SECRET`: Your Tailscale OAuth secret.
-   - `SERVER_USER`: The username to log in to your server.
-   - `SERVER_HOST`: The hostname or IP address of your server.
-   - `SERVER_PASSWORD`: The password for your server user.
-   - `SERVER_DIRECTORY`: The directory you are using for your compose files.
+You need to define several secret values in your GitHub repository settings. Go to your repository, click on "Settings" > "Secrets and variables" > "Actions", then add the following secrets:
+
+- `TS_OAUTH_CLIENT_ID`: Your Tailscale OAuth client ID.
+- `TS_OAUTH_SECRET`: Your Tailscale OAuth secret.
+- `SERVER_USER`: The username to log in to your server.
+- `SERVER_HOST`: The hostname or IP address of your server.
+- `SERVER_PASSWORD`: The password for your server user.
+- `SERVER_DIRECTORY`: The directory you are using for your compose files.
 
 Once everything is configured, push changes to the `main` branch of your repository. This will trigger the workflow, which:
+
 1. Checks out the code.
 2. Connects to the Tailscale VPN.
 3. SSHs into the target server.
@@ -74,7 +79,9 @@ Once everything is configured, push changes to the `main` branch of your reposit
 Monitor the Actions tab in your repository for logs and status of the deployments.
 
 # TODO
-- [x] add monitoring for container updates 
+
+- [x] add monitoring for container updates
+- [ ] add allow and deny to nginx confs
 - [ ] add a check for the network top level element in the compose files
 - [ ] add monitoring for swag proxy sample updates
 - [ ] add authelia for MFA
