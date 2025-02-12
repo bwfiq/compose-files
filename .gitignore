@@ -1,1 +1,6 @@
-*
+# Nginx Proxies to Services
+!private-swag/data/nginx/proxy-confs/*
+
+# Working Files
+tmp/*
+old/*
