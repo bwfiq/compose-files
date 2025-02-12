@@ -17,8 +17,6 @@ services:
     volumes:
       - ./data/hoarder:/data
       - ./load-hoarder-secrets.sh:/load-hoarder-secrets.sh
-    ports:
-      - 3000:3000
     networks:
       - apollo_bridge
     secrets:
