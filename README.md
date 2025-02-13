@@ -85,3 +85,19 @@ Monitor the Actions tab in your repository for logs and status of the deployment
 - [ ] add monitoring for swag proxy sample updates
 - [ ] add authelia for MFA
 - [ ] change network name
+
+# Misc
+
+Another machine on the LAN is running caprover with these commands:
+
+```bash
+mkdir -p /captain/data/
+
+echo "{"skipVerifyingDomains":"true","nginxPortNumber80":8080,"nginxPortNumber443":8443}" > /captain/data/config-override.json
+
+docker run -p 3000:3000
+-e ACCEPTED_TERMS=true
+-e BY_PASS_PROXY_CHECK=true
+-e MAIN_NODE_IP_ADDRESS=127.0.0.1
+-v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
+```
