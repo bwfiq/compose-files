@@ -19,7 +19,7 @@ services:
       - URL=bwfiq.com
       - SUBDOMAINS=wildcard
       - ONLY_SUBDOMAINS=true
-      - EXTRA_DOMAINS=*.code-server.bwfiq.com,*.slayment.com,*.doldrive.com,aenyrathia.wiki
+      - EXTRA_DOMAINS=*.caprover.bwfiq.com,*.code-server.bwfiq.com,*.slayment.com,*.doldrive.com,aenyrathia.wiki
       - VALIDATION=dns
       - DNSPLUGIN=cloudflare
       - CERTPROVIDER=zerossl
