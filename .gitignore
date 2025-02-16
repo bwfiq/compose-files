@@ -1,8 +1,23 @@
 # Nginx Proxies to Services
 !private-swag/data/nginx/proxy-confs/*
-## to ignore the swag proxy samples
+
+# to ignore the swag proxy samples
 *.sample
+
+# Ignore
+*.env
+*/data/**
 
 # Working Files
 tmp/*
 old/*
+
+# Temp
+aenyrathia-wiki/
+code-server/
+gitea/
+gtnh-server/
+librechat/
+school-engage-sg/
+uptime-kuma/
+webtrees/
