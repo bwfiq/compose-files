@@ -4,7 +4,7 @@ Create a docker network named `apollo_bridge`.
 
 The gitignore ignores all files in any directory named data recursively.
 Map the docker compose volumes to a ./data subdirectory on the host to make use of this.
-Add the following to each compose file to monitor it for updates with diun:
+Add the following to each compose file under the services top level element -> the service to monitor it for updates with diun:
 
 ```yml
 services:
@@ -13,9 +13,15 @@ services:
       - diun.enable=true
 ```
 
-Naming convention for containers are [private|public]-[image-name].
+Naming convention for containers are [private|public]-[image-name]. While there is no functional difference between a public and private service, this naming convention allows us to easily see what services are proxied by swag.
 
-Secrets needed on your local machine (at `/run/secrets/`):
+Some of the compose files require secrets that will be loaded from files in your /run/secrets. You must ensure these files do not end in a newline, meaning you cannot simply `echo $VAR > /run/secrets/VAR` as it will result in issues when a script or service tries to parse the file. The recommended method of doing this is:
+
+```bash
+printf "%s" "$(openssl rand -base64 32 | tr -d '\n')" > /run/secrets/WAKAPI_PASSWORD_SALT
+```
+
+Secrets:
 
 - DIUN
   - `diun-telegram-bot-token` and `diun-telegram-chat-ids`: used by diun to send notifications to telegram
@@ -29,6 +35,8 @@ Secrets needed on your local machine (at `/run/secrets/`):
   - `nextauth_secret`: used by Hoarder. Generate with `openssl rand -base64 36`
   - `meili_master_key`: used by Hoarder. Generate with `openssl rand -base64 36`
   - `openai_api_key`: used by Hoarder. Get from [OpenAI's platform](https://platform.openai.com/settings/organization/api-keys)
+- Wakapi
+  - `WAKAPI_PASSWORD_SALT`: used by Wakapi to hash passwords. Generate with `openssl rand -base64 36`
 
 # Containers
 
@@ -51,9 +59,9 @@ Secrets needed on your local machine (at `/run/secrets/`):
   - Collects and archives web pages
   - Includes a startup script that sets the environment variables from secrets
   - Internal ports: 3000
-- [Pairdrop](https://github.com/schlagmichdoch/PairDrop/) as p2p file sharing
-  - Web UI for easy sharing between devices
-  - Internal ports: 3000
+- [Wakapi](https://github.com/muety/wakapi) as time tracker
+  - Monitors your tools/browsers and collects metrics about your activity
+  -
 
 # GitHub Actions Workflows
 
