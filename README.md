@@ -45,13 +45,12 @@ Secrets:
 - [LLDAP](https://github.com/lldap/lldap) as LDAP server
   - lightweight LDAP server
   - Internal ports: 3890 (LDAP), 17170 (web UI)
-  - External ports: 17170 (web UI)
 - [SWAG](https://github.com/linuxserver/docker-swag) as reverse proxy
   - Includes a startup script that pulls in a cloudflare api token as a secret
   - Internal ports: 443 (reverse proxy)
   - External ports: 443 (reverse proxy)
   - Proxies configured:
-    - `caprover.*`/`*.caprover.*` (192.168.0.180:3000), `pairdrop.*` (pairdrop:3000), `hoarder.*` (hoarder:3000), `grocy.*` (grocy:80)
+    - `caprover.*`/`*.caprover.*` (192.168.0.180:3000), `pairdrop.*` (pairdrop:3000), `hoarder.*` (hoarder:3000), `grocy.*` (grocy:80), `timetrack.slayment.com` (wakapi:3000)
   - fail2ban jail [nginx-unauthorized] was _REMOVED_ because it kept banning ips coming from its own public ip
 - [Grocy](https://github.com/grocy/grocy) for household management
   - Internal ports: 80 (HTTP)
@@ -61,7 +60,7 @@ Secrets:
   - Internal ports: 3000
 - [Wakapi](https://github.com/muety/wakapi) as time tracker
   - Monitors your tools/browsers and collects metrics about your activity
-  -
+  - Internal ports: 3000
 
 # GitHub Actions Workflows
 
