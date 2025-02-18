@@ -7,7 +7,12 @@
 services:
   stremio:
     container_name: stremio
-    image: stremio/server:latest
+    image: tsaridas/stremio-docker:latest
+    environment:
+      - NO_CORS=1
+      - WEBUI_LOCATION=https://stremio.slayment.com/
+    volumes:
+      - ./.stremio-server:/root/.stremio-server
     networks:
       - apollo_bridge
     labels:
