@@ -29,5 +29,5 @@ jobs:
           cd ${{ secrets.SERVER_DIRECTORY }}  # Change directory to where the application is stored
 
           # Pull the latest code from the repository
-          git pull origin main  # Execute git pull to fetch the latest changes from the main branch
+          git pull --no-rebase origin main  # Execute git pull to fetch the latest changes from the main branch
           EOF
